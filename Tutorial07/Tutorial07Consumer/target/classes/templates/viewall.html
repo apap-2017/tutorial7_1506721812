@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>View All Students</title>
+		<div th:replace="fragments/header"></div>
+	</head>
+    <body>
+        <br></br>
+        <center><h3>View All Students</h3></center>
+        <br></br>
+        <table class="table table-bordered table-striped dt-responsive nowrap">
+        		<thead>
+        			<tr>
+        				<th class="text-center">No</th>
+        				<th class="text-center">NPM</th>
+        				<th class="text-center">Name</th>
+        				<th class="text-center">GPA</th>
+        				<th class="text-center">Cum Laude</th>
+        				<th class="text-center">Delete</th>
+        				<th class="text-center">Update</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr th:each="student,iterationStatus: ${students}">
+        				<td class="text-center" th:text="${iterationStatus.count}">No.1</td>
+        				<td class="text-center" th:text="${student.npm}">Student NPM</td>
+        				<td class="text-center" th:text="${student.name}">Student Name</td>
+        				<td class="text-center" th:text="${student.gpa}">Student GPA</td>
+        				<td class="text-center" th:text="${student.gpa >= 3.49} ? 'Cumlaude!' : 'Sangat Memuaskan!'">Keterangan</td>
+        				<td class="text-center">
+        					<div class="btn-group" role="group">
+        						<a th:href="'/student/delete/' + ${student.npm}"><button type="button" class="btn btn-secondary"> 
+        						Delete Data </button></a>
+        					</div>
+        				</td>
+        				<td class="text-center">
+        					<div class="btn-group" role="group">
+        						<a th:href="'/student/update/' + ${student.npm}"><button type="button" class="btn btn-secondary"> 
+        						Update Data </button></a>
+        					</div>
+        				</td>
+        			</tr>
+        		</tbody>
+        </table>
+    </body>
+    <br></br>
+    <script>
+	$(document).ready(function() {
+		$('#allStudents').DataTable({
+		});
+	});
+	</script>
+    <div th:replace="fragments/footer"></div>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>View All Courses</title>
+		<div th:replace="fragments/header"></div>
+	</head>
+    <body>
+        <br></br>
+        <center><h3>View All Courses</h3></center>
+        <br></br>
+        <table class="table table-bordered table-striped dt-responsive nowrap">
+        		<thead>
+        			<tr>
+        				<th class="text-center">No</th>
+        				<th class="text-center">ID</th>
+        				<th class="text-center">Name</th>
+        				<th class="text-center">Credits</th>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr th:each="course,iterationStatus: ${courses}" th:class="${iterationStatus.odd}?'odd'">
+        				<td class="text-center" th:text="${iterationStatus.count}">No.1</td>
+        				<td class="text-center" th:text="${course.idCourse}">Course ID</td>
+        				<td class="text-center" th:text="${course.name}">Course Name</td>
+        				<td class="text-center" th:text="${course.credits}">Course Credits</td>
+        			</tr>
+        		</tbody>
+        </table>
+        	<script type="text/javascript" src="/js/datatables.min.js"></script>
+       	<script>
+       	$(document).ready( function () {
+       	    $('#allStudents').DataTable();
+       	} );
+       	</script>
+        
+    </body>
+    <div th:replace="fragments/footer"></div>
+</html>
+

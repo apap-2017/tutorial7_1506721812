@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>View Student by NPM</title>
+		<div th:replace="fragments/header"></div>
+    </head>
+    <body>
+    	<center><h3 th:text="'NPM = ' + ${student.npm}">Student NPM</h3></center>
+	    <center><h3 th:text="'Name = ' + ${student.name}">Student Name</h3></center>
+	    <center><h3 th:text="'GPA = ' + ${student.gpa}">Student GPA</h3></center>
+	       	
+	    <center><h3>Kuliah yang diambil</h3></center>
+	    <center><ul th:each="course, iterationStatus: ${student.courses}">
+	    <center><li th:text="${course.name} + '-' + ${course.credits} + ' sks'">
+	       			Nama kuliah-X SKS
+	    </li> </center>	
+	    </ul></center>
+    </body>
+    <br></br>
+    <div th:replace="fragments/footer"></div>
+</html>
